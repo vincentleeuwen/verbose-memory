@@ -16,7 +16,7 @@ const
         src_html: src_path + "html/"
     }
 
-module.exports = (env, argv) => { 
+module.exports = (_, argv) => { 
     const { mode } = argv;
     console.log(`Running with mode: ${mode}`);
     return {
