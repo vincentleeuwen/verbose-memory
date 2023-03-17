@@ -16,46 +16,51 @@ const
         src_html: src_path + "html/"
     }
 
-module.exports = {
-    name: 'nobel_prizes',
-    mode: process.env.NODE_ENV === 'production' ? 'production' : 'development',
-    entry: [paths.src_js+'index.js', paths.src_sass+'main.scss'],
-    output: {
-        path: assets_path,
-    },
-    plugins: [
-        new MiniCssExtractPlugin({
-            filename: 'style.css'
-        }),
-        new HtmlWebpackPlugin({
-            template: paths.src_html + "index.html",
-        }),
-    ],
-    devServer: {
-        port: 3000,
-    },
-    module: {
-        rules: [
-            {
-                test: /\.(scss|sass|css)$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {
-                            esModule: false,
-                        }
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'sass-loader'
-                    }
-                    ]
-            },
+module.exports = (env, argv) => { 
+    const { mode } = argv;
+    console.log(`Running with mode: ${mode}`);
+    return {
+        name: 'nobel_prizes',
+        mode,
+        entry: [paths.src_js+'index.js', paths.src_sass+'main.scss'],
+        output: {
+            path: assets_path,
+        },
+        plugins: [
+            new MiniCssExtractPlugin({
+                filename: 'style.css'
+            }),
+            new HtmlWebpackPlugin({
+                template: paths.src_html + "index.html",                
+                filename: mode === 'production' ? '../laureates.html' : 'index.html'
+            }),
         ],
+        devServer: {
+            port: 3000,
+        },
+        module: {
+            rules: [
+                {
+                    test: /\.(scss|sass|css)$/,
+                    use: [
+                        {
+                            loader: 'style-loader',
+                        },
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {
+                                esModule: false,
+                            }
+                        },
+                        {
+                            loader: 'css-loader',
+                        },
+                        {
+                            loader: 'sass-loader'
+                        }
+                        ]
+                },
+            ],
+        }
     }
 }
