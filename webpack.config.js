@@ -22,7 +22,7 @@ module.exports = (env, argv) => {
     return {
         name: 'nobel_prizes',
         mode,
-        entry: [paths.src_js+'index.js', paths.src_sass+'main.scss'],
+        entry: [paths.src_js+'index.tsx', paths.src_sass+'main.scss'],
         output: {
             path: assets_path,
         },
@@ -40,6 +40,11 @@ module.exports = (env, argv) => {
         },
         module: {
             rules: [
+                {
+                    test: /\.tsx?$/,
+                    use: 'ts-loader',
+                    exclude: /node_modules/
+                },
                 {
                     test: /\.(scss|sass|css)$/,
                     use: [
@@ -61,6 +66,9 @@ module.exports = (env, argv) => {
                         ]
                 },
             ],
-        }
+        },
+        resolve: {
+            extensions: ['.ts', '.js', '.tsx']
+        },
     }
 }
