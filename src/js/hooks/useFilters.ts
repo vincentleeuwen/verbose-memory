@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
 import { Person } from '../types';
+import { getData } from './api';
 
 export enum ordering {
     asc = 'asc',
@@ -8,29 +9,41 @@ export enum ordering {
 }
 
 interface props {
-    data: Person[],
+    laureates: Person[],
     setPage: (page: number) => void,
     setOrder: (order: ordering) => void,
     order: ordering,
     prevPage: () => void,
     nextPage: () => void,
     page: number,
+    loading: boolean,
 }
 
 
 const useFilters = () : props => {
     const [order, setOrder] = useState<ordering>(ordering.asc);
     const [page, setPage] = useState<number>(1);
-    const [data, setData] = useState<Person[]>([])
+    const [laureates, setLaureates] = useState<Person[]>([])
     const [loading, setLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
 
     const query = new URLSearchParams({ page: page.toString(), order }).toString();
-    console.log('QUERY');
-    console.log(query);
 
     useEffect(() => {
-
-    }, []);
+        const getAndSetData = async () => {
+            setLoading(true);
+            setError('');
+            try {
+                const apiData = await getData(query);
+                setLaureates(apiData);
+            } catch (error) {
+                setError('Something went wrong.');
+            } finally {
+                setLoading(false);
+            }         
+        }
+        getAndSetData();
+    }, [query]);
     
     const nextPage = () => {
         if (page === 3) return;
@@ -43,13 +56,14 @@ const useFilters = () : props => {
     }
 
     return {
-        data,
+        laureates,
         setPage,
         setOrder,
         order,
         prevPage,
         nextPage,
         page,
+        loading,
     }
 }
 
