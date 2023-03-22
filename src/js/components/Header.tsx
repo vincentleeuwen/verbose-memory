@@ -1,11 +1,8 @@
 import { useContext } from 'react';
-import { AppContext, ContextType, themes } from '../context';
+import { AppContext, themes } from '../context';
 
 const Header = () => {
-    const { theme, setTheme } = useContext(AppContext) as ContextType;
-
-    console.log('hahaha');
-    console.log(theme);
+    const { theme, setTheme } = useContext(AppContext);
 
     return (
         <header>

@@ -1,16 +1,16 @@
 @use './colors';
 
-// .pagination-dark {
-//     .page-item {
-//         span {
-//             background: colors.$dark;
-//         }
+.pagination-dark {
+    .page-item {
+        span {
+            background: colors.$dark;
+        }
 
         
-//     }
-//     .page-item.active {
-//         span {
-//             background: colors.$green;
-//         }
-//     }
-// }
+    }
+    .page-item.active {
+        span {
+            background: colors.$green;
+        }
+    }
+}

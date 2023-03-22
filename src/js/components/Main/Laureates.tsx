@@ -1,13 +1,13 @@
 import { useContext } from 'react';
 
-import { AppContext, ContextType, themes } from '../../context';
+import { AppContext, themes } from '../../context';
 import Page from './Page';
 
 import useFilters, { ordering } from '../../hooks/useFilters';
 
 
 const Laureates = () => {
-    const { theme } = useContext(AppContext) as ContextType;
+    const { theme } = useContext(AppContext);
 
     const isDark = theme === themes.dark;
     const { 
