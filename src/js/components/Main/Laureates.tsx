@@ -1,15 +1,15 @@
 import { useContext } from 'react';
 
-import { AppContext, themes } from '../../context';
+import { AppContext } from '../../context';
 import Page from './Page';
 
 import useFilters, { ordering } from '../../hooks/useFilters';
 
 
 const Laureates = () => {
-    const { theme } = useContext(AppContext);
+    const { darkTheme } = useContext(AppContext);
 
-    const isDark = theme === themes.dark;
+    
     const { 
         order,
         setOrder,
@@ -55,9 +55,9 @@ const Laureates = () => {
                         </li>
                     </ul>
                 </div>
-                <table className={isDark ? "table table-dark table-striped" : "table table-striped"}>
+                <table className={darkTheme ? "table table-dark table-striped" : "table table-striped"}>
                     <thead>
-                    <tr className={isDark ? "table-dark" : "table"}>
+                    <tr className={darkTheme ? "table-dark" : "table"}>
                         <th>Firstname</th>
                         <th>Lastname</th>
                         <th>Date of birth</th>
@@ -84,7 +84,7 @@ const Laureates = () => {
                     </tbody>
                 </table>
                 <nav>
-                    <ul className={isDark ? "pagination pagination-dark" : "pagination"}>
+                    <ul className={darkTheme ? "pagination pagination-dark" : "pagination"}>
                         <li onClick={prevPage} className={page == 1 ? "page-item disabled" : "page-item"}>
                             <span className="page-link">Previous</span>
                         </li>

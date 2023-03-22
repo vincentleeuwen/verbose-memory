@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { BsFillBrightnessHighFill, BsFillMoonFill } from 'react-icons/bs';
 
 import logo from './logo_icon.svg';
-import { AppContext, themes } from '../../context';
+import { AppContext } from '../../context';
 
 const Header = () => {
-    const { theme, setTheme } = useContext(AppContext);
+    const { darkTheme, toggleTheme } = useContext(AppContext);
 
     return (
         <header>
@@ -29,8 +29,8 @@ const Header = () => {
                             </li>
                         </ul>
                         <div className="btn-group" role="group" aria-label="Basic example" style={{ marginRight: 10 }}>
-                            <button onClick={() => setTheme(themes.light)} className={theme === themes.light ? 'd-flex justify-content-center align-items-center btn btn-light' : 'd-flex justify-content-center align-items-center btn btn-outline-light'} type="button"><BsFillBrightnessHighFill /></button>
-                            <button onClick={() => setTheme(themes.dark)} className={theme === themes.dark ? 'd-flex justify-content-center align-items-center btn btn-light' : 'd-flex justify-content-center align-items-center btn btn-outline-light'} type="button"><BsFillMoonFill /></button>
+                            <button onClick={toggleTheme} className={!darkTheme ? 'd-flex justify-content-center align-items-center btn btn-light' : 'd-flex justify-content-center align-items-center btn btn-outline-light'} type="button"><BsFillBrightnessHighFill /></button>
+                            <button onClick={toggleTheme} className={darkTheme ? 'd-flex justify-content-center align-items-center btn btn-light' : 'd-flex justify-content-center align-items-center btn btn-outline-light'} type="button"><BsFillMoonFill /></button>
                             
                         </div>
                         <form className="d-flex" role="search">

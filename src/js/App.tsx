@@ -1,19 +1,17 @@
-import { useState } from 'react';
-
 import { AppContext } from './context';
-import { themes } from './types';
 import Footer from './components/Footer';
 import Header from './components/Nav/Header';
 import Laureates from './components/Main/Laureates';
 
+import useTheme, { ThemeProps } from './hooks/useTheme';
+
 
 const App = () => {
-    const [theme, setTheme] = useState<themes>(themes.light);
+    const { darkTheme, toggleTheme } = useTheme();
 
-
-    const contextProps = {
-        theme,
-        setTheme,
+    const contextProps : ThemeProps = {
+        darkTheme,
+        toggleTheme,
     }
 
     return (

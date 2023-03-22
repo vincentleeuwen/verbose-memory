@@ -1,14 +1,5 @@
 import { createContext } from 'react';
 
-import { themes } from './types';
+import { ThemeProps } from './hooks/useTheme';
 
-interface ContextType {
-    theme: themes;
-    setTheme: (theme: themes) => void;
-}
-
-export const AppContext = createContext<ContextType>({} as ContextType);
-
-export {
-    themes,
-}
+export const AppContext = createContext<ThemeProps>({} as ThemeProps);
