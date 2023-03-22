@@ -10,8 +10,6 @@
 npm-debug.log
 
 # assets
-assets/main.js
-assets/style.css
-assets/main.js.LICENSE.txt
+assets
 
 laureates.html
