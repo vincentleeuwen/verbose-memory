@@ -12,4 +12,11 @@ npm-debug.log
 # assets
 assets
 
+# build file
 laureates.html
+
+# eslint
+.eslintcache
+
+# vscode
+.vscode
