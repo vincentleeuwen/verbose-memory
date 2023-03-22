@@ -4,7 +4,7 @@ import useFilters, { ordering } from '../../hooks/useFilters';
 
 
 const Laureates = () => {
-    const { order, setOrder, nextPage, prevPage, setPage, page } = useFilters();
+    const { order, setOrder, nextPage, prevPage, setPage, page, laureates, loading } = useFilters();
 
     return (
         <main className="py-5">
@@ -49,14 +49,20 @@ const Laureates = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                        <td>...</td>
-                    </tr>
+                        {
+                            loading ? <tr>
+                                <td>Loading...</td>
+                            </tr> :
+                            laureates.map(person => <tr key={person.id}>
+                                <td>{person?.givenName?.en}</td>
+                                <td>{person?.familyName?.en}</td>
+                                <td>{person?.birth?.date}</td>
+                                <td>{person?.birth?.place?.cityNow?.en}</td>
+                                <td>{person?.nobelPrizes?.length}</td>
+                                <td><a href={person?.wikipedia?.english} target="_blank" rel="noopener noreferrer">Wiki</a></td>
+                            </tr>)
+                        }
+                    
                     </tbody>
                 </table>
                 <nav>

@@ -4,6 +4,7 @@ interface Translations {
 }
 
 export interface Person {
+    id: string,
     givenName: Translations,
     familyName: Translations,
     birth: {

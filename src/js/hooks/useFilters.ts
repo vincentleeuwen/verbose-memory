@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 
 import { Person } from '../types';
-import { getData } from './api';
+import { getData, LIMIT } from './api';
 
 export enum ordering {
     asc = 'asc',
     desc = 'desc',
 }
 
-interface props {
+interface outputProps {
     laureates: Person[],
     setPage: (page: number) => void,
     setOrder: (order: ordering) => void,
@@ -17,17 +17,19 @@ interface props {
     nextPage: () => void,
     page: number,
     loading: boolean,
+    error: string,
 }
 
 
-const useFilters = () : props => {
+const useFilters = () : outputProps => {
     const [order, setOrder] = useState<ordering>(ordering.asc);
     const [page, setPage] = useState<number>(1);
     const [laureates, setLaureates] = useState<Person[]>([])
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
 
-    const query = new URLSearchParams({ page: page.toString(), order }).toString();
+    const offset = ((page - 1) * LIMIT).toString()
+    const query = new URLSearchParams({ offset, sort: order }).toString();
 
     useEffect(() => {
         const getAndSetData = async () => {
@@ -35,7 +37,7 @@ const useFilters = () : props => {
             setError('');
             try {
                 const apiData = await getData(query);
-                setLaureates(apiData);
+                setLaureates(apiData.laureates);
             } catch (error) {
                 setError('Something went wrong.');
             } finally {
@@ -64,6 +66,7 @@ const useFilters = () : props => {
         nextPage,
         page,
         loading,
+        error,
     }
 }
 
