@@ -10,8 +10,8 @@ export enum ordering {
 
 interface outputProps {
     laureates: Person[],
-    setPage: (page: number) => void,
-    setOrder: (order: ordering) => void,
+    updatePage: (page: number) => void,
+    updateOrder: (order: ordering) => void,
     order: ordering,
     prevPage: () => void,
     nextPage: () => void,
@@ -54,16 +54,21 @@ const useFilters = () : outputProps => {
     }, [query]);
     
     const nextPage = () => {
-        if (page === 3) return;
+        if (page === 3 || loading) return;
         setPage(p => p + 1);
     }
 
     const prevPage = () => {
-        if (page === 1) return;
+        if (page === 1 || loading) return;
         setPage(p => p - 1);
     }
 
+    const updatePage = (page: number) => !loading && setPage(page);
+
+    const updateOrder = (order: ordering) => !loading && setOrder(order);
+
     const updateBirthRange = (from: string, to: string) => {
+        if (loading) return;
         if (from === birthDate && to === birthDateTo) {
             setBirthDate('');
             setBirthDateTo('');
@@ -75,8 +80,8 @@ const useFilters = () : outputProps => {
 
     return {
         laureates,
-        setPage,
-        setOrder,
+        updatePage,
+        updateOrder,
         order,
         prevPage,
         nextPage,

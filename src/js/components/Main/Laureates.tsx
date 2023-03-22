@@ -13,10 +13,10 @@ const Laureates = () => {
 
     const { 
         order,
-        setOrder,
+        updateOrder,
         nextPage,
         prevPage,
-        setPage,
+        updatePage,
         page,
         laureates,
         loading,
@@ -33,10 +33,10 @@ const Laureates = () => {
                         <li className="nav-item me-2">
                             <span>Sort:</span>
                         </li>
-                        <li className="nav-item" onClick={() => setOrder(ordering.asc)}>
+                        <li className="nav-item" onClick={() => updateOrder(ordering.asc)}>
                             <a className={order === ordering.asc ? 'nav-link active' : 'nav-link' } href="#">Ascending</a>
                         </li>
-                        <li className="nav-item" onClick={() => setOrder(ordering.desc)}>
+                        <li className="nav-item" onClick={() => updateOrder(ordering.desc)}>
                             <a className={order === ordering.desc ? 'nav-link active' : 'nav-link' } href="#">Descending</a>
                         </li>
                     </ul>
@@ -89,9 +89,9 @@ const Laureates = () => {
                         <li onClick={prevPage} className={page == 1 ? "page-item disabled" : "page-item"}>
                             <span className="page-link">Previous</span>
                         </li>
-                        <Page number={1} page={page} setter={setPage} />
-                        <Page number={2} page={page} setter={setPage} />
-                        <Page number={3} page={page} setter={setPage} />
+                        <Page number={1} page={page} setter={updatePage} />
+                        <Page number={2} page={page} setter={updatePage} />
+                        <Page number={3} page={page} setter={updatePage} />
                         <li onClick={nextPage} className={page == 3 ? "page-item disabled" : "page-item"}>
                             <span className="page-link">Next</span>
                         </li>
