@@ -1,4 +1,7 @@
 import { useContext } from 'react';
+import { BsFillBrightnessHighFill, BsFillMoonFill } from 'react-icons/bs';
+
+
 import { AppContext, themes } from '../context';
 
 const Header = () => {
@@ -26,8 +29,8 @@ const Header = () => {
                             </li>
                         </ul>
                         <div className="btn-group" role="group" aria-label="Basic example" style={{ marginRight: 10 }}>
-                            <button onClick={() => setTheme(themes.light)} className={theme === themes.light ? 'btn btn-light' : 'btn btn-outline-light'} type="button">L</button>
-                            <button onClick={() => setTheme(themes.dark)} className={theme === themes.dark ? 'btn btn-light' : 'btn btn-outline-light'} type="button">D</button>
+                            <button onClick={() => setTheme(themes.light)} className={theme === themes.light ? 'd-flex justify-content-center align-items-center btn btn-light' : 'd-flex justify-content-center align-items-center btn btn-outline-light'} type="button"><BsFillBrightnessHighFill /></button>
+                            <button onClick={() => setTheme(themes.dark)} className={theme === themes.dark ? 'd-flex justify-content-center align-items-center btn btn-light' : 'd-flex justify-content-center align-items-center btn btn-outline-light'} type="button"><BsFillMoonFill /></button>
                             
                         </div>
                         <form className="d-flex" role="search">
