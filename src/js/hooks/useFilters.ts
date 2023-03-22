@@ -43,6 +43,7 @@ const useFilters = () : outputProps => {
             try {
                 const apiData = await getData(query);
                 setLaureates(apiData.laureates);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             } catch (error) {
                 setError('Something went wrong.');
             } finally {

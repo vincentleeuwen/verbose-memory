@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 
 import { AppContext } from '../../context';
+
+import Loader from '../Loader';
 import Page from './Page';
 
 import useFilters, { ordering } from '../../hooks/useFilters';
@@ -9,7 +11,6 @@ import useFilters, { ordering } from '../../hooks/useFilters';
 const Laureates = () => {
     const { darkTheme } = useContext(AppContext);
 
-    
     const { 
         order,
         setOrder,
@@ -69,7 +70,7 @@ const Laureates = () => {
                     <tbody>
                         {
                             loading ? <tr>
-                                <td colSpan={6}>Loading...</td>
+                                <td colSpan={6}><Loader /></td>
                             </tr> :
                             laureates.map(person => <tr key={person.id}>
                                 <td>{person?.givenName?.en}</td>
