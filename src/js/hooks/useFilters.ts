@@ -1,18 +1,19 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Person } from '../types';
+
 import { getData, LIMIT } from './api';
 
-export enum ordering {
+export enum Ordering {
   asc = 'asc',
   desc = 'desc',
 }
 
-interface outputProps {
+interface OutputProps {
   laureates: Person[];
   updatePage: (page: number) => void;
-  updateOrder: (order: ordering) => void;
-  order: ordering;
+  updateOrder: (order: Ordering) => void;
+  order: Ordering;
   prevPage: () => void;
   nextPage: () => void;
   page: number;
@@ -22,8 +23,8 @@ interface outputProps {
   birthRange: string;
 }
 
-const useFilters = (): outputProps => {
-  const [order, setOrder] = useState<ordering>(ordering.asc);
+const useFilters = (): OutputProps => {
+  const [order, setOrder] = useState<Ordering>(Ordering.asc);
   const [page, setPage] = useState<number>(1);
   const [laureates, setLaureates] = useState<Person[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
@@ -48,13 +49,13 @@ const useFilters = (): outputProps => {
         const apiData = await getData(query);
         setLaureates(apiData.laureates);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-      } catch (error) {
+      } catch (e) {
         setError('Something went wrong.');
       } finally {
         setLoading(false);
       }
     };
-    getAndSetData();
+    void getAndSetData();
   }, [query]);
 
   const nextPage = () => {
@@ -67,9 +68,9 @@ const useFilters = (): outputProps => {
     setPage((p) => p - 1);
   };
 
-  const updatePage = (page: number) => !loading && setPage(page);
+  const updatePage = (p: number) => !loading && setPage(p);
 
-  const updateOrder = (order: ordering) => !loading && setOrder(order);
+  const updateOrder = (o: Ordering) => !loading && setOrder(o);
 
   const updateBirthRange = (from: string, to: string) => {
     if (loading) return;

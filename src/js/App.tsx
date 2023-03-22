@@ -1,9 +1,8 @@
-import { AppContext } from './context';
 import Footer from './components/Footer';
-import Header from './components/Nav/Header';
 import Laureates from './components/Main/Laureates';
-
+import Header from './components/Nav/Header';
 import useTheme, { ThemeProps } from './hooks/useTheme';
+import { AppContext } from './context';
 
 const App = () => {
   const { darkTheme, toggleTheme } = useTheme();

@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import { BsFillBrightnessHighFill, BsFillMoonFill } from 'react-icons/bs';
 
-import logo from './logo_icon.svg';
 import { AppContext } from '../../context';
+
+import logo from './logo_icon.svg';
 
 const Header = () => {
   const { darkTheme, toggleTheme } = useContext(AppContext);
@@ -15,7 +16,12 @@ const Header = () => {
       >
         <div className="container">
           <a className="navbar-brand" href="#">
-            <img src={logo} height="36px" width="auto" alt="Checkmk" />
+            <img
+              src={logo as string}
+              height="36px"
+              width="auto"
+              alt="Checkmk"
+            />
           </a>
           <button
             className="navbar-toggler"

@@ -1,11 +1,10 @@
 import { useContext } from 'react';
 
 import { AppContext } from '../../context';
-
+import useFilters, { Ordering } from '../../hooks/useFilters';
 import Loader from '../Loader';
-import Page from './Page';
 
-import useFilters, { ordering } from '../../hooks/useFilters';
+import Page from './Page';
 
 const Laureates = () => {
   const { darkTheme } = useContext(AppContext);
@@ -32,20 +31,20 @@ const Laureates = () => {
             <li className="nav-item me-2">
               <span>Sort:</span>
             </li>
-            <li className="nav-item" onClick={() => updateOrder(ordering.asc)}>
+            <li className="nav-item" onClick={() => updateOrder(Ordering.asc)}>
               <a
                 className={
-                  order === ordering.asc ? 'nav-link active' : 'nav-link'
+                  order === Ordering.asc ? 'nav-link active' : 'nav-link'
                 }
                 href="#"
               >
                 Ascending
               </a>
             </li>
-            <li className="nav-item" onClick={() => updateOrder(ordering.desc)}>
+            <li className="nav-item" onClick={() => updateOrder(Ordering.desc)}>
               <a
                 className={
-                  order === ordering.desc ? 'nav-link active' : 'nav-link'
+                  order === Ordering.desc ? 'nav-link active' : 'nav-link'
                 }
                 href="#"
               >
