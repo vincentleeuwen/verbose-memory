@@ -78,7 +78,7 @@ const Laureates = () => {
                     </tbody>
                 </table>
                 <nav>
-                    <ul className="pagination">
+                    <ul className="pagination pagination-dark">
                         <li onClick={prevPage} className={page == 1 ? "page-item disabled" : "page-item"}>
                             <span className="page-link">Previous</span>
                         </li>

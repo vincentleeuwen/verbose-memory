@@ -7,7 +7,7 @@ interface Props {
 
 const Page = ({ page, number, setter }: Props) => (
     <li className={page === number ? "page-item active" : "page-item"} onClick={() => setter(number)}>
-        <a className="page-link" href="#">{number}</a>
+        <span className="page-link">{number}</span>
     </li>
 )
 
