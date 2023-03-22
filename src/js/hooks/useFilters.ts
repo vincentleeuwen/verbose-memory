@@ -18,6 +18,8 @@ interface outputProps {
     page: number,
     loading: boolean,
     error: string,
+    updateBirthRange: (from: string, to: string) => void,
+    birthRange: string,
 }
 
 
@@ -27,9 +29,12 @@ const useFilters = () : outputProps => {
     const [laureates, setLaureates] = useState<Person[]>([])
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+    const [birthDate, setBirthDate] = useState<string>('');
+    const [birthDateTo, setBirthDateTo] = useState<string>('');
+    const birthRange = `${birthDate}-${birthDateTo}`;
 
     const offset = ((page - 1) * LIMIT).toString()
-    const query = new URLSearchParams({ offset, sort: order }).toString();
+    const query = new URLSearchParams({ offset, sort: order, birthDate, birthDateTo }).toString();
 
     useEffect(() => {
         const getAndSetData = async () => {
@@ -57,6 +62,16 @@ const useFilters = () : outputProps => {
         setPage(p => p - 1);
     }
 
+    const updateBirthRange = (from: string, to: string) => {
+        if (from === birthDate && to === birthDateTo) {
+            setBirthDate('');
+            setBirthDateTo('');
+        } else {
+            setBirthDate(from);
+            setBirthDateTo(to);
+        }        
+    }
+
     return {
         laureates,
         setPage,
@@ -67,6 +82,8 @@ const useFilters = () : outputProps => {
         page,
         loading,
         error,
+        updateBirthRange,
+        birthRange,
     }
 }
 

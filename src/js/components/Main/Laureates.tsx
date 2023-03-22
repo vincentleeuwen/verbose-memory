@@ -4,7 +4,18 @@ import useFilters, { ordering } from '../../hooks/useFilters';
 
 
 const Laureates = () => {
-    const { order, setOrder, nextPage, prevPage, setPage, page, laureates, loading } = useFilters();
+    const { 
+        order,
+        setOrder,
+        nextPage,
+        prevPage,
+        setPage,
+        page,
+        laureates,
+        loading,
+        updateBirthRange,
+        birthRange,
+    } = useFilters();
 
     return (
         <main className="py-5">
@@ -26,14 +37,15 @@ const Laureates = () => {
                         <li className="nav-item me-2">
                             <span>Filter by:</span>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Boomers</a>
+                        {/* Dates: https://en.wikipedia.org/wiki/Generation_Z */}
+                        <li className="nav-item" onClick={() => updateBirthRange('1946', '1964')}>
+                            <a className={birthRange === '1946-1964' ? 'nav-link active' : 'nav-link'} href="#">Boomers</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Millennials</a>
+                        <li className="nav-item" onClick={() => updateBirthRange('1981', '1996')}>
+                            <a className={birthRange === '1981-1996' ? 'nav-link active' : 'nav-link'} href="#">Millennials</a>
                         </li>
-                        <li className="nav-item">
-                            <a className="nav-link" href="#">Gen Z</a>
+                        <li className="nav-item" onClick={() => updateBirthRange('1997', '2012')}>
+                            <a className={birthRange === '1997-2012' ? 'nav-link active' : 'nav-link'} href="#">Gen Z</a>
                         </li>
                     </ul>
                 </div>
@@ -51,7 +63,7 @@ const Laureates = () => {
                     <tbody>
                         {
                             loading ? <tr>
-                                <td>Loading...</td>
+                                <td colSpan={6}>Loading...</td>
                             </tr> :
                             laureates.map(person => <tr key={person.id}>
                                 <td>{person?.givenName?.en}</td>
@@ -74,7 +86,7 @@ const Laureates = () => {
                         <Page number={2} page={page} setter={setPage} />
                         <Page number={3} page={page} setter={setPage} />
                         <li onClick={nextPage} className={page == 3 ? "page-item disabled" : "page-item"}>
-                            <a className="page-link" href="#">Next</a>
+                            <span className="page-link">Next</span>
                         </li>
                     </ul>
                 </nav>
