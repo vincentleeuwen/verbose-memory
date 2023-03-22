@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { BsFillBrightnessHighFill, BsFillMoonFill } from 'react-icons/bs';
 
-
-import { AppContext, themes } from '../context';
+import logo from './logo_icon.svg';
+import { AppContext, themes } from '../../context';
 
 const Header = () => {
     const { theme, setTheme } = useContext(AppContext);
@@ -12,7 +12,7 @@ const Header = () => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark" role="navigation">
                 <div className="container">
                     <a className="navbar-brand" href="#">
-                        <img src="../../../assets/images/logo_icon.svg" height="36px" width="auto" alt="Checkmk" />
+                        <img src={logo} height="36px" width="auto" alt="Checkmk" />
                     </a>
                     <button className="navbar-toggler" type="button" data-bs-toggle="collapse"
                             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
