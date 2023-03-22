@@ -18,3 +18,8 @@ export interface Person {
         english: string,
     }
 }
+
+export enum themes {
+    dark = 'dark',
+    light = 'light',
+}
