@@ -6,20 +6,20 @@ import Laureates from './components/Main/Laureates';
 import useTheme, { ThemeProps } from './hooks/useTheme';
 
 const App = () => {
-	const { darkTheme, toggleTheme } = useTheme();
+  const { darkTheme, toggleTheme } = useTheme();
 
-	const contextProps: ThemeProps = {
-		darkTheme,
-		toggleTheme,
-	};
+  const contextProps: ThemeProps = {
+    darkTheme,
+    toggleTheme,
+  };
 
-	return (
-		<AppContext.Provider value={contextProps}>
-			<Header />
-			<Laureates />
-			<Footer />
-		</AppContext.Provider>
-	);
+  return (
+    <AppContext.Provider value={contextProps}>
+      <Header />
+      <Laureates />
+      <Footer />
+    </AppContext.Provider>
+  );
 };
 
 export default App;
